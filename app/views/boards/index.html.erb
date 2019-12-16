@@ -1,9 +1,13 @@
 <div class="d-flex align-items-center">
 
   <h1>問題一覧</h1>
-  <div class="ml-auto boards_linkBox"></div>
+  <div class="ml-auto boards_linkBox">
   <%= link_to '新規作成', new_board_path, class: 'btn btn-outline-dark' %>
+  </div>
 </div>
+<% if flash[:notice] %>
+  <div class="alert alert-danger"><%= flash[:notice] %></div>
+<% end %>
 <table class="table table-hover boards_table">
   <thead class="thead-dark">
     <tr>
