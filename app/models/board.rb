@@ -15,6 +15,10 @@
 
 class Board < ApplicationRecord
   has_many :comments
+  # 多対多のアソシーエーション
+  has_many :board_tag_relations
+  has_many :tags, through: :board_tag_relations
+
   validates :name, presence: true, length: { maximum: 10 }
   validates :major, presence: true, length: { maximum: 20 }
   validates :title, presence: true, length: { maximum: 30 }
