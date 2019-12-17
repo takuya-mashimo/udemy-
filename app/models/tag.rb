@@ -12,7 +12,7 @@
 
 class Tag < ApplicationRecord
   # has_manyは複数形
-  has_many :board_tag_relations
+  has_many :board_tag_relations, dependent: :delete_all
   # 掲示板と関連づけるアソシーエーション
   has_many :boards, through: :board_tag_relations
 end
