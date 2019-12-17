@@ -4,7 +4,8 @@ class BoardsController < ApplicationController
   before_action :set_target_board, only: %i[show edit update destroy]
 
   def index
-    @boards = Board.page(params[:page])
+    @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).boards : Board.all
+    @boards = @boards.page(params[:page])
   end
 
   def new
@@ -50,7 +51,7 @@ class BoardsController < ApplicationController
   private
 
   def board_params
-    params.require(:board).permit(:major, :name, :title, :body)
+    params.require(:board).permit(:major, :name, :title, :body, tag_ids: [])
   end
 
   def set_target_board
